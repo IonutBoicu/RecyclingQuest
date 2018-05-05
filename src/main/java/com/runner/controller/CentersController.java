@@ -20,18 +20,30 @@ public class CentersController {
 
     @GetMapping(value = "/showAll", produces = "application/json")
     public @ResponseBody
-    List<Centers> getHistories() {
+    List<Centers> getCenters() {
         return centersService.showAll();
     }
 
     @GetMapping(value = "/findId", produces = "application/json")
     public @ResponseBody
-    Centers getUserById(@RequestParam("id") long id) {
+    Centers getCenterById(@RequestParam("id") long id) {
         return centersService.getById(id);
     }
 
+    @GetMapping(value = "/findByName", produces = "application/json")
+    public @ResponseBody
+    Centers getCenterByName(@RequestParam("name")String name) {
+        return centersService.findByName(name);
+    }
+
+    @GetMapping(value = "/findAllByMaterial", produces = "application/json")
+    public @ResponseBody
+    List<Centers> getCentersByMaterial(@RequestParam("material")String material) {
+        return centersService.findAllByMaterial(material);
+    }
+
     @DeleteMapping(value = "/deleteId")
-    public @ResponseBody String deleteUserById(@RequestParam("id") long id) {
+    public @ResponseBody String deleteCenterById(@RequestParam("id") long id) {
         if (centersService.getById(id) != null) {
             centersService.delete(id);
             return "Center Deleted";
@@ -40,7 +52,7 @@ public class CentersController {
     }
 
     @PostMapping(value = "/update", consumes = "application/json")
-    public @ResponseBody String updateUser(@RequestBody Centers centers) {
+    public @ResponseBody String updateCenter(@RequestBody Centers centers) {
         if (centers != null) {
             centersService.saveOrUpdate(centers);
             return "Center saved";

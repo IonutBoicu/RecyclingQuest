@@ -36,6 +36,16 @@ public class CentersServiceImpl implements CentersService{
     }
 
     @Override
+    public Centers findByName(String name) {
+        return centerRepository.findByName(name);
+    }
+
+    @Override
+    public List<Centers> findAllByMaterial(String material) {
+        return centerRepository.findAllByMaterials(material);
+    }
+
+    @Override
     public void delete(Long id) {
         centerRepository.delete(id);
     }

@@ -1,14 +1,8 @@
 package com.runner.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
-
-enum collection {
-    HOME,
-    ATCENTER,
-    BOTH,
-    PARTNER
-}
 
 @Entity
 public class Centers {
@@ -18,24 +12,23 @@ public class Centers {
     private String name;
     private String phone;
     private String email;
+    private String address;
     private Float latitude, longitude, rating;
-    @ManyToMany(cascade=CascadeType.ALL)
-    @JoinTable(name="category_center", joinColumns=@JoinColumn(name="center_id"), inverseJoinColumns=@JoinColumn(name="category_id"))
-    private Set<RecyclingCategories> categoriesSet;
-    private collection typeOfCollection;
+    private List<String> materials;
 
     public Centers() {
 
     }
 
-    public Centers(String name, String phone, String email, Float latitude, Float longitude, Float rating, Set<RecyclingCategories> categoriesSet) {
+    public Centers(String name, String phone, String email, String address, Float latitude, Float longitude, Float rating, List<String> materials) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.address = address;
         this.latitude = latitude;
         this.longitude = longitude;
         this.rating = rating;
-        this.categoriesSet = categoriesSet;
+        this.materials = materials;
     }
 
     public Long getId() {
@@ -70,6 +63,14 @@ public class Centers {
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public Float getLatitude() {
         return latitude;
     }
@@ -94,11 +95,11 @@ public class Centers {
         this.rating = rating;
     }
 
-    public Set<RecyclingCategories> getCategoriesSet() {
-        return categoriesSet;
+    public List<String> getMaterials() {
+        return materials;
     }
 
-    public void setCategoriesSet(Set<RecyclingCategories> categoriesSet) {
-        this.categoriesSet = categoriesSet;
+    public void setMaterials(List<String> materials) {
+        this.materials = materials;
     }
 }

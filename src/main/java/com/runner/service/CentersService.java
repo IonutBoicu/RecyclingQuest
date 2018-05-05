@@ -13,4 +13,8 @@ public interface CentersService {
     void saveOrUpdate(Centers userHistory);
 
     void delete(Long id);
+
+    Centers findByName(String name);
+
+    List<Centers> findAllByMaterial(String material);
 }

@@ -16,16 +16,19 @@ public class UserProfile {
     private float achievementPoints;
     @OneToMany(mappedBy = "owner")
     private List<UserHistory> history;
+    @OneToMany(mappedBy = "owner")
+    private List<SensorBin> sensors;
 
     public UserProfile() {
     }
 
-    public UserProfile(String name, String username, String password, float achievementPoints) {
-        this.id = 0L;
+    public UserProfile(String name, String username, String password, float achievementPoints, List<UserHistory> history, List<SensorBin> sensors) {
         this.name = name;
         this.username = username;
         this.password = password;
         this.achievementPoints = achievementPoints;
+        this.history = history;
+        this.sensors = sensors;
     }
 
     public Long getId() {
@@ -66,5 +69,21 @@ public class UserProfile {
 
     public void setAchievementPoints(float achievementPoints) {
         this.achievementPoints = achievementPoints;
+    }
+
+    public List<UserHistory> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<UserHistory> history) {
+        this.history = history;
+    }
+
+    public List<SensorBin> getSensors() {
+        return sensors;
+    }
+
+    public void setSensors(List<SensorBin> sensors) {
+        this.sensors = sensors;
     }
 }

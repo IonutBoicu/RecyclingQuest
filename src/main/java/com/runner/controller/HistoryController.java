@@ -1,7 +1,11 @@
 package com.runner.controller;
 
+import com.runner.domain.Centers;
 import com.runner.domain.UserHistory;
+import com.runner.domain.UserProfile;
+import com.runner.service.CentersService;
 import com.runner.service.HistoryService;
+import com.runner.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +17,15 @@ import java.util.List;
 public class HistoryController {
 
     private HistoryService historyService;
+    private UserService userService;
+
+    public HistoryController(HistoryService historyService, UserService userService) {
+        this.historyService = historyService;
+        this.userService = userService;
+    }
 
     @Autowired
-    public HistoryController(HistoryService historyService) {
-        this.historyService = historyService;
-    }
+
 
     @GetMapping(value = "/showAll", produces = "application/json")
     public @ResponseBody
@@ -38,6 +46,18 @@ public class HistoryController {
             return "UserHistory Deleted";
         }
         return "UserHistory Not found";
+    }
+
+    @PostMapping(value = "/newTransaction")
+    public @ResponseBody boolean newTransaction(@RequestParam("username") String username,
+                                                @RequestParam("center") String center,
+                                                @RequestParam("date")String date,
+                                                @RequestParam("weight")double weight,
+                                                @RequestParam("material")String material) {
+        UserProfile userProfile = userService.findByusername(username);
+        UserHistory userHistory = new UserHistory(null,weight,date,center, userProfile, material);
+        historyService.saveOrUpdate(userHistory);
+        return true;
     }
 
     @PostMapping(value = "/update", consumes = "application/json")

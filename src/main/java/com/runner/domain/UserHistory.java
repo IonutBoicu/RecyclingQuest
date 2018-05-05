@@ -11,26 +11,24 @@ public class UserHistory {
     private Long id;
     private String details;
     private double weight;
-    private Date date;
+    private String date;
     private String recyclingCenter;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="user_id")
     private UserProfile owner;
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="category_id")
-    private RecyclingCategories category;
+    private String material;
 
     public UserHistory() {
 
     }
 
-    public UserHistory(String details, double weight, Date date, String recyclingCenter, UserProfile owner, RecyclingCategories material) {
+    public UserHistory(String details, double weight, String date, String recyclingCenter, UserProfile owner, String material) {
         this.details = details;
         this.weight = weight;
         this.date = date;
         this.recyclingCenter = recyclingCenter;
         this.owner = owner;
-        this.category = material;
+        this.material = material;
     }
 
     public Long getId() {
@@ -57,11 +55,11 @@ public class UserHistory {
         this.weight = weight;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -81,11 +79,11 @@ public class UserHistory {
         this.owner = owner;
     }
 
-    public RecyclingCategories getMaterial() {
-        return category;
+    public String getMaterial() {
+        return material;
     }
 
-    public void setMaterial(RecyclingCategories category) {
-        this.category = category;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 }
