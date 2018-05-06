@@ -10,7 +10,7 @@ public class SensorBin {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String material;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserProfile owner;
     private Float percentage;

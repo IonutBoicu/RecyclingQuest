@@ -1,5 +1,7 @@
 package com.runner.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,14 +10,16 @@ import java.util.List;
 public class UserProfile {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private String username;
     private String password;
     private float achievementPoints;
+    @JsonIgnore
     @OneToMany(mappedBy = "owner")
     private List<UserHistory> history;
+    @JsonIgnore
     @OneToMany(mappedBy = "owner")
     private List<SensorBin> sensors;
 

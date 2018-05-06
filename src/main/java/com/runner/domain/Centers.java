@@ -14,13 +14,13 @@ public class Centers {
     private String email;
     private String address;
     private Float latitude, longitude, rating;
-    private List<String> materials;
+    private String materials;
 
     public Centers() {
 
     }
 
-    public Centers(String name, String phone, String email, String address, Float latitude, Float longitude, Float rating, List<String> materials) {
+    public Centers(String name, String phone, String email, String address, Float latitude, Float longitude, Float rating, String materials) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -95,11 +95,11 @@ public class Centers {
         this.rating = rating;
     }
 
-    public List<String> getMaterials() {
+    public String getMaterials() {
         return materials;
     }
 
-    public void setMaterials(List<String> materials) {
+    public void setMaterials(String materials) {
         this.materials = materials;
     }
 }

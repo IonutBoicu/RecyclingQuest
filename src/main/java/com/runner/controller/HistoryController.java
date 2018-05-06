@@ -19,12 +19,13 @@ public class HistoryController {
     private HistoryService historyService;
     private UserService userService;
 
+    @Autowired
     public HistoryController(HistoryService historyService, UserService userService) {
         this.historyService = historyService;
         this.userService = userService;
     }
 
-    @Autowired
+
 
 
     @GetMapping(value = "/showAll", produces = "application/json")

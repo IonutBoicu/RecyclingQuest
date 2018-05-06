@@ -45,7 +45,7 @@ public class UserController {
         return "UserProfile Not found";
     }
 
-    @PostMapping(value = "/signup", consumes = "application/json")
+    @PostMapping(value = "/signup")
     public @ResponseBody boolean updateUser(@RequestParam("name")String name,
                                            @RequestParam("username")String username,
                                            @RequestParam("password")String password
